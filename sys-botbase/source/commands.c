@@ -425,6 +425,8 @@ u64 followMainPointer(s64* jumps, size_t count)
     u64 size = sizeof offset;
     u8* out = malloc(size);
     MetaData meta = getMetaData();
+    if (meta.main_nso_base == 0)
+        return 0;
 
     attach();
     Result rc = readMem(out, meta.main_nso_base + jumps[0], size);
